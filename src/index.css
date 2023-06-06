@@ -13,3 +13,6 @@ body {
   border-bottom: 1px solid;
   border-color: rgba(248, 250, 252, 0.08);
 }
+.fb_border_color {
+  border-color: rgba(248, 250, 252, 0.08);
+}

@@ -1,0 +1,48 @@
+.slider_1 {
+  background-image: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.671) 0%,
+      rgba(0, 0, 0, 0.671) 100%
+    ),
+    url("https://i.ibb.co/V9dzj8Q/pexels-matt-hardy-2272940.webp") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+}
+.slider_2 {
+  background-image: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.671) 0%,
+      rgba(0, 0, 0, 0.671) 100%
+    ),
+    url("https://i.ibb.co/GkJNJcG/pexels-andre-furtado-1264210-1.webp") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+}
+.slider_3 {
+  background-image: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.671) 0%,
+      rgba(0, 0, 0, 0.671) 100%
+    ),
+    url("https://i.ibb.co/rfjjkLP/erik-mclean-9-XK7vgo-GSgc-unsplash.webp") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+}
+.slider_4 {
+  background-image: linear-gradient(
+      360deg,
+      rgba(0, 0, 0, 0.671) 0%,
+      rgba(0, 0, 0, 0.671) 100%
+    ),
+    url("https://i.ibb.co/mhNh732/matt-roskovec-f-B3-u-W-TUcs-unsplash.webp") !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 500px;
+}

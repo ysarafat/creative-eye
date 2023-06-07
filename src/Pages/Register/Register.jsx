@@ -2,7 +2,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Container from '../../Components/Container/Container';
 import { AuthContext } from '../../Context/AuthProvider';
 import image from '../../assets/register/Fingerprint.svg';
@@ -11,6 +12,9 @@ function Register() {
     const { registerUser, updateUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [showPass, setShowPass] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
     const {
         register,
         handleSubmit,
@@ -33,7 +37,15 @@ function Register() {
                 registerUser(data.email, data.password)
                     .then(() => {
                         updateUser(data.name, img);
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Register Successful',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
                         reset();
+                        navigate(from, { replace: true });
                     })
                     .catch((err) => setError(err.message));
             });

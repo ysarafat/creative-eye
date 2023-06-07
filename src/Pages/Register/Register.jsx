@@ -77,7 +77,7 @@ function Register() {
                                 </label>
                                 <input
                                     name="name"
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 bg-white dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
                                     type="text"
                                     placeholder="Enter Your Name"
                                     {...register('name', { required: true })}
@@ -101,7 +101,7 @@ function Register() {
                                     {...register('picture', { required: true })}
                                     type="file"
                                     name="picture"
-                                    className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white border-none"
+                                    className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white  border-none"
                                 />
                                 <span>
                                     {errors.picture?.type === 'required' && (
@@ -120,7 +120,7 @@ function Register() {
                                 </label>
                                 <input
                                     {...register('phoneNumber', { required: true })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  bg-white rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
                                     type="number"
                                     placeholder="Enter Your Phone"
                                 />
@@ -141,7 +141,7 @@ function Register() {
                                 </label>
                                 <input
                                     {...register('email', { required: true })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                                     type="email"
                                     placeholder="Enter Your Email"
                                 />
@@ -165,7 +165,7 @@ function Register() {
                                         pattern:
                                             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
                                     })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Your Password"
                                 />
@@ -204,7 +204,7 @@ function Register() {
                                             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
                                         minLength: 6,
                                     })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Confirm Password"
                                 />

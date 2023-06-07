@@ -64,7 +64,7 @@ function Login() {
                                 </label>
                                 <input
                                     {...register('email', { required: true })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                                     type="email"
                                     placeholder="Enter Your Email"
                                 />
@@ -83,7 +83,7 @@ function Login() {
                                 </label>
                                 <input
                                     {...register('password', { required: true })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Your Password"
                                 />

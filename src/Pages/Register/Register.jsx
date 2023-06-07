@@ -8,14 +8,17 @@ import { AuthContext } from '../../Context/AuthProvider';
 import image from '../../assets/register/Fingerprint.svg';
 
 function Register() {
-    const { registerUser } = useContext(AuthContext);
+    const { registerUser, updateUser } = useContext(AuthContext);
     const [error, setError] = useState('');
+    const [showPass, setShowPass] = useState(false);
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
+        setError('');
         // host image
         const formData = new FormData();
         formData.append('image', data.picture[0]);
@@ -24,11 +27,16 @@ function Register() {
             body: formData,
         })
             .then((res) => res.json())
-            .then((image) => console.log(image));
-        // create user
-        registerUser(data.email, data.password)
-            .then((res) => console.log(res.user))
-            .catch((err) => console.log(err.message));
+            .then((image) => {
+                const img = image.data.display_url;
+                // create user
+                registerUser(data.email, data.password)
+                    .then(() => {
+                        updateUser(data.name, img);
+                        reset();
+                    })
+                    .catch((err) => setError(err.message));
+            });
     };
 
     return (
@@ -38,10 +46,15 @@ function Register() {
                     <div className='className=" w-full lg:w-1/2 text-center" '>
                         <img src={image} alt="" />
                     </div>
-                    <div className="w-full lg:w-1/2 lg:p-10 p-4 rounded-lg bg-slate-200 dark:bg-slate-800 ">
+                    <div className="w-full lg:w-1/2 lg:p-10 p-4 rounded-lg bg-slate-100 dark:bg-slate-800 ">
                         <h1 className="text-2xl font-bold text-center mb-5 text-dark-grey dark:text-white">
                             Register
                         </h1>
+                        {error && (
+                            <p className="text-base font-semibold my-2 text-red-500 text-center">
+                                {error}
+                            </p>
+                        )}
                         <form onSubmit={handleSubmit(onSubmit)} action="">
                             <div>
                                 <label
@@ -141,9 +154,10 @@ function Register() {
                                             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
                                     })}
                                     className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
-                                    type="password"
+                                    type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Your Password"
                                 />
+
                                 <span>
                                     {errors.password?.type === 'pattern' && (
                                         <p className="text-red-500 mb-2">
@@ -179,7 +193,7 @@ function Register() {
                                         minLength: 6,
                                     })}
                                     className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 focus:border-green"
-                                    type="password"
+                                    type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Confirm Password"
                                 />
                                 <span>
@@ -201,6 +215,18 @@ function Register() {
                                         <p className="text-red-500 mb-2">Password Field Required</p>
                                     )}
                                 </span>
+                            </div>
+                            <div className="flex items-center mt-2">
+                                <input
+                                    onClick={() => setShowPass(!showPass)}
+                                    type="checkbox"
+                                    name="check"
+                                    className="checkbox checkbox-success"
+                                />
+
+                                <label className="ml-2  font-medium text-gray-900 dark:text-gray-300">
+                                    {showPass ? 'Hide Password' : 'Show Password'}{' '}
+                                </label>
                             </div>
                             <input
                                 className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"

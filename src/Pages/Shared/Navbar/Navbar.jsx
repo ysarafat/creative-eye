@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { HiBars3BottomLeft, HiXMark } from 'react-icons/hi2';
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../../../Components/Container/Container';
 import Theme from '../../../Components/Container/Theme/Theme';
-import userPP from '../../../assets/user.png';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const navLinks = (
     <>
@@ -43,7 +43,7 @@ const navLinks = (
                 Classes
             </NavLink>
         </li>
-        <div>
+        <li>
             <NavLink
                 to="/dashboard"
                 className={({ isActive }) =>
@@ -54,11 +54,37 @@ const navLinks = (
             >
                 Dashboard
             </NavLink>
-        </div>
+        </li>
+        <li>
+            <NavLink
+                to="/Login"
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-green'
+                        : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                }
+            >
+                Login
+            </NavLink>
+        </li>
+        <li>
+            <NavLink
+                to="/Register"
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-green'
+                        : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                }
+            >
+                REgister
+            </NavLink>
+        </li>
     </>
 );
 function Navbar() {
+    const { user } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
+    console.log(user);
     return (
         <nav className="dark:bg-[#0C1322] nb_border bg-[#EDF1F7]">
             <Container>
@@ -76,7 +102,7 @@ function Navbar() {
                         <div className="tooltip tooltip-bottom" data-tip="Yeasir Arafat">
                             <div className="avatar">
                                 <div className="w-12 rounded-full">
-                                    <img src={userPP} alt="" />
+                                    <img src={user?.photoURL} alt="" />
                                 </div>
                             </div>
                         </div>

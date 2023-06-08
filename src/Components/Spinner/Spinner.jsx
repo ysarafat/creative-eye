@@ -3,9 +3,9 @@ import { MutatingDots } from 'react-loader-spinner';
 
 function Spinner() {
     return (
-        <div className="h-screen bg-black">
+        <div className="h-screen flex justify-center items-center bg-black">
             <MutatingDots
-                height="100"
+                height="150"
                 width="100"
                 color="#4fa94d"
                 secondaryColor="#4fa94d"

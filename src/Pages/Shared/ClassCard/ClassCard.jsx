@@ -15,6 +15,8 @@ function ClassCard({ classes }) {
             classId: id,
             class: className,
             price,
+            instructor,
+            classImage,
         };
 
         axiosSecure.post('/enroll-class', enrollClass).then((data) => {
@@ -55,9 +57,16 @@ function ClassCard({ classes }) {
                 </h2>
 
                 <p className="text-lg">Instructor : {instructor}</p>
-                <p className="text-lg">Available Seats : {seats}</p>
-                <p className="text-lg">Booked Seats : {bookedSeats}</p>
-                <p className="text-lg">Price : ${price}</p>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <p className="text-lg">Total Seats : {seats}</p>
+                        <p className="text-lg">Price : ${price}</p>
+                    </div>
+                    <div className="text-end">
+                        <p className="text-lg">Booked Seats : {bookedSeats}</p>
+                        <p className="text-lg">Available Seats: {parseInt(seats) - bookedSeats}</p>
+                    </div>
+                </div>
             </div>
             <div className="rounded-b-lg">
                 <button

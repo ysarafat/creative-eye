@@ -33,6 +33,9 @@ function Register() {
             .then((res) => res.json())
             .then((image) => {
                 const img = image.data.display_url;
+                if (data.password !== data.confirmPassword) {
+                    return setError('Password Do not match');
+                }
                 // create user
                 registerUser(data.email, data.password)
                     .then(() => {

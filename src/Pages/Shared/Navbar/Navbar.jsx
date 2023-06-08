@@ -136,7 +136,7 @@ function Navbar() {
                         <Theme />
                         <ul className="flex gap-5 text-lg">{navLinks}</ul>
                         {user && (
-                            <div className="tooltip tooltip-bottom" data-tip="Yeasir Arafat">
+                            <div className="tooltip tooltip-bottom z-40" data-tip="Yeasir Arafat">
                                 <div className="avatar">
                                     <div className="w-12 rounded-full">
                                         <img src={user?.photoURL} alt="" />

@@ -55,28 +55,44 @@ function Dashboard() {
                     </div>
                     <div className="divider dark:divider-gray-300" />
                     {userRole === 'student' && (
-                        <li>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="user-home"
-                            >
-                                <AiFillHome /> User Home
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="my-classes"
-                            >
-                                <AiFillBook /> My Enroll Classes
-                            </NavLink>
-                        </li>
+                        <>
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="user-home"
+                                >
+                                    <AiFillHome /> User Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="my-classes"
+                                >
+                                    <AiFillBook /> My Selected Classes
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="my-classes"
+                                >
+                                    <AiFillBook /> My Enroll Classes
+                                </NavLink>
+                            </li>
+                        </>
                     )}
                     {userRole === 'instructor' && (
                         <li>

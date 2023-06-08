@@ -33,6 +33,7 @@ function AddClass() {
                     seats: data.availableSeats,
                     price: parseFloat(priceValue.toFixed(2)),
                     classDetails: data.classDetails,
+                    status: 'pending',
                 };
                 console.log(newClass);
                 axiosSecure.post('/add-class', newClass).then((data) => {

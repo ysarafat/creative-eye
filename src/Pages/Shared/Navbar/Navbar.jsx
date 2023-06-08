@@ -62,18 +62,20 @@ function Navbar() {
                     Classes
                 </NavLink>
             </li>
-            <li>
-                <NavLink
-                    to="/dashboard"
-                    className={({ isActive }) =>
-                        isActive
-                            ? 'text-green'
-                            : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
-                    }
-                >
-                    Dashboard
-                </NavLink>
-            </li>
+            {user && (
+                <li>
+                    <NavLink
+                        to="/dashboard"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-green'
+                                : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                        }
+                    >
+                        Dashboard
+                    </NavLink>
+                </li>
+            )}
             {!user && (
                 <>
                     {' '}

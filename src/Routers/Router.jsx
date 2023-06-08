@@ -6,6 +6,7 @@ import AddClass from '../Pages/Dashboard/Instructor/AddClass/Addclass';
 import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
+import PrivateRoutes from './PrivateRoutes';
 
 const router = new createBrowserRouter([
     {
@@ -28,7 +29,11 @@ const router = new createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: (
+            <PrivateRoutes>
+                <Dashboard />
+            </PrivateRoutes>
+        ),
         children: [
             {
                 path: 'add-class',

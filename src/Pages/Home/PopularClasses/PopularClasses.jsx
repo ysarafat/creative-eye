@@ -18,7 +18,7 @@ function PopularClasses() {
                     subtitle="Explore Highly Sought-After Courses with Wide Appeal"
                 />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-10 my-10">
-                    {popularClasses?.slice(0, 6)?.map((classes) => (
+                    {popularClasses?.map((classes) => (
                         <ClassCard key={classes._id} classes={classes} />
                     ))}
                 </div>

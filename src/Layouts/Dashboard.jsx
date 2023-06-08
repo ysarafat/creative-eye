@@ -6,11 +6,13 @@ import { HiBars3BottomLeft } from 'react-icons/hi2';
 import { NavLink, Outlet } from 'react-router-dom';
 import Theme from '../Components/Theme/Theme';
 import useAuth from '../hooks/useAuth';
+import useRole from '../hooks/useRole';
 
 function Dashboard() {
     const { user } = useAuth();
-    // TODO : load data from server
-    const role = 'admin';
+    const [userRole] = useRole();
+    const isRoll = 'admin';
+    console.log(userRole);
 
     return (
         <div className="drawer lg:drawer-open">
@@ -52,7 +54,7 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className="divider dark:divider-gray-300" />
-                    {role === 'student' && (
+                    {userRole === 'student' && (
                         <li>
                             <NavLink
                                 className={({ isActive }) =>
@@ -76,7 +78,7 @@ function Dashboard() {
                             </NavLink>
                         </li>
                     )}
-                    {role === 'instructor' && (
+                    {userRole === 'instructor' && (
                         <li>
                             <NavLink
                                 className={({ isActive }) =>
@@ -110,7 +112,7 @@ function Dashboard() {
                             </NavLink>
                         </li>
                     )}
-                    {role === 'admin' && (
+                    {userRole === 'admin' && (
                         <li>
                             <NavLink
                                 className={({ isActive }) =>

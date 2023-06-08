@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Swal from 'sweetalert2';
 import useAuth from '../../../../hooks/useAuth';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 function AddClass() {
     const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
     const {
         register,
         handleSubmit,
@@ -19,8 +22,31 @@ function AddClass() {
             body: formData,
         })
             .then((res) => res.json())
-            .then((data) => {
-                const imageUrl = data.data.display_url;
+            .then((image) => {
+                const imageUrl = image.data.display_url;
+                const priceValue = parseFloat(data.price);
+                const newClass = {
+                    className: data.className,
+                    classImage: imageUrl,
+                    instructor: data.instructor,
+                    instructorEmail: data.instructorEmail,
+                    seats: data.availableSeats,
+                    price: parseFloat(priceValue.toFixed(2)),
+                    classDetails: data.classDetails,
+                };
+                console.log(newClass);
+                axiosSecure.post('/add-class', newClass).then((data) => {
+                    if (data.data.insertedId) {
+                        reset();
+                        Swal.fire({
+                            position: 'top-center',
+                            icon: 'success',
+                            title: 'Item added successfully',
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                });
             });
     };
     return (
@@ -118,6 +144,7 @@ function AddClass() {
                             {...register('price', { required: true })}
                             className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
                             type="number"
+                            step="any"
                             placeholder="Enter Price"
                         />
                         <span>

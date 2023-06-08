@@ -4,11 +4,13 @@ import React from 'react';
 import { FaUserCog, FaUserTie } from 'react-icons/fa';
 import { LuTrash } from 'react-icons/lu';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 function AllUsers() {
+    const [axiosSecure] = useAxiosSecure();
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users');
-        return res.json();
+        const res = await axiosSecure.get('/users');
+        return res.data;
     });
     const handleAdminRole = (user) => {
         Swal.fire({
@@ -102,14 +104,14 @@ function AllUsers() {
     };
 
     return (
-        <div>
+        <div className="max-w-full ">
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 All Users
             </h1>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto dark:bg-slate-800 bg-slate-100 p-5 rounded-lg dark:text-white text-dark-grey">
                 <table className="table">
                     <thead>
-                        <tr>
+                        <tr className="dark:text-white">
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
@@ -138,7 +140,7 @@ function AllUsers() {
                                         <button
                                             onClick={() => handleInstructorRole(user)}
                                             disabled={user.role === 'instructor' && true}
-                                            className="btn text-lg hover:bg-green hover:text-white"
+                                            className="btn text-lg hover:bg-green bg-white hover:text-white dark:disabled:bg-slate-400"
                                         >
                                             <FaUserTie />
                                         </button>{' '}
@@ -154,19 +156,21 @@ function AllUsers() {
                                         <button
                                             onClick={() => handleAdminRole(user)}
                                             disabled={user.role === 'admin' && true}
-                                            className="btn text-lg hover:bg-green hover:text-white"
+                                            className="btn text-lg hover:bg-green bg-white hover:text-white dark:disabled:bg-slate-400"
                                         >
                                             <FaUserCog />
                                         </button>{' '}
                                     </div>
                                 </td>
                                 <td>
-                                    <button
-                                        onClick={() => handleDelete(user)}
-                                        className="btn text-lg hover:bg-red-500 hover:text-white"
-                                    >
-                                        <LuTrash />
-                                    </button>
+                                    <div className="tooltip" data-tip="Delete this user">
+                                        <button
+                                            onClick={() => handleDelete(user)}
+                                            className="btn text-lg hover:bg-red-500 bg-white hover:text-white"
+                                        >
+                                            <LuTrash />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         ))}

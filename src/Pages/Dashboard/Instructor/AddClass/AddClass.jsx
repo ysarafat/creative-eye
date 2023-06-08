@@ -31,7 +31,7 @@ function AddClass() {
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 action=""
-                className="dark:bg-slate-800 p-5 rounded-lg"
+                className="dark:bg-slate-800 bg-slate-100 p-5 rounded-lg"
             >
                 <div className="lg:flex items-center gap-5">
                     {' '}

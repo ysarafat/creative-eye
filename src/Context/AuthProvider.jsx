@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+import axios from 'axios';
 import {
     createUserWithEmailAndPassword,
     getAuth,
@@ -49,7 +50,17 @@ function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
             setUser(loggedUser);
-            setLoading(false);
+
+            if (loggedUser) {
+                axios
+                    .post('http://localhost:5000/jwt', {
+                        email: loggedUser.email,
+                    })
+                    .then((data) => localStorage.setItem('access-token', data.data.token));
+                setLoading(false);
+            } else {
+                localStorage.removeItem('access-token');
+            }
         });
         return () => {
             unsubscribe();

@@ -3,7 +3,7 @@ import { HiBars3BottomLeft, HiXMark } from 'react-icons/hi2';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Container from '../../../Components/Container/Container';
-import Theme from '../../../Components/Container/Theme/Theme';
+import Theme from '../../../Components/Theme/Theme';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 function Navbar() {

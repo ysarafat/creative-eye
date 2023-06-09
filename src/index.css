@@ -16,3 +16,18 @@ body {
 .fb_border_color {
   border-color: rgba(248, 250, 252, 0.08);
 }
+
+.swal2-confirm {
+  background-color: rgb(77 191 123 / var(--tw-bg-opacity)) !important;
+  outline: none;
+  border: none;
+}
+.swal2-popup {
+  @apply bg-white dark:bg-slate-800;
+}
+.swal2-title {
+  @apply text-dark-grey dark:text-white;
+}
+.swal2-html-container {
+  @apply dark:text-gray-300;
+}

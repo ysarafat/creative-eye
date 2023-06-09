@@ -6,6 +6,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 function ClassCard({ classes }) {
     const { _id, className, classImage, instructor, price, seats, bookedSeats } = classes;
+    console.log(seats, bookedSeats);
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const handleEnroll = (id) => {
@@ -20,14 +21,16 @@ function ClassCard({ classes }) {
         };
 
         axiosSecure.post('/enroll-class', enrollClass).then((data) => {
+            console.log(data.data.message);
             if (data.data.message) {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'warning',
-                    title: 'All Ready Enrolled',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                // Swal.fire({
+                //     position: 'top-center',
+                //     icon: 'warning',
+                //     title: `${data.data.message}`,
+                //     showConfirmButton: false,
+                //     timer: 1500,
+                // });
+                Swal.fire('Sorry', `${data.data.message}`, 'warning');
             }
             if (data.data.insertedId) {
                 axios.put(`http://localhost:5000/booked-seat/${id}`).then((res) => {
@@ -63,8 +66,8 @@ function ClassCard({ classes }) {
                         <p className="text-lg">Price : ${price}</p>
                     </div>
                     <div className="text-end">
-                        <p className="text-lg">Booked Seats : {bookedSeats}</p>
-                        <p className="text-lg">Available Seats: {parseInt(seats) - bookedSeats}</p>
+                        <p className="text-lg">Booked Seats : {bookedSeats || 0}</p>
+                        <p className="text-lg">Available Seats: {seats - bookedSeats || 0}</p>
                     </div>
                 </div>
             </div>

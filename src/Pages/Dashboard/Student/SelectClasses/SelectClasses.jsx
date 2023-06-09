@@ -45,6 +45,7 @@ function EnrollClass() {
                         <thead>
                             <tr className="dark:text-white">
                                 <th>#</th>
+                                <th>Image</th>
                                 <th>Class Name</th>
                                 <th>Instructor</th>
                                 <th>price</th>
@@ -56,6 +57,16 @@ function EnrollClass() {
                             {enrolledClasses.map((classes, index) => (
                                 <tr>
                                     <td>{index + 1}</td>
+                                    <td>
+                                        <div className="avatar">
+                                            <div className="rounded w-12 h-12">
+                                                <img
+                                                    src={classes.classImage}
+                                                    alt="Avatar Tailwind CSS Component"
+                                                />
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td>{classes.class}</td>
                                     <td>{classes.instructor}</td>
                                     <td>{classes.price.toFixed(2)}</td>

@@ -3,7 +3,7 @@ import React from 'react';
 import { AiFillBook, AiFillHome } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { HiBars3BottomLeft } from 'react-icons/hi2';
-import { NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import Theme from '../Components/Theme/Theme';
 import useAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
@@ -11,8 +11,6 @@ import useRole from '../hooks/useRole';
 function Dashboard() {
     const { user } = useAuth();
     const [userRole] = useRole();
-    const isRoll = 'admin';
-    console.log(userRole);
 
     return (
         <div className="drawer lg:drawer-open">
@@ -35,9 +33,11 @@ function Dashboard() {
                 <label htmlFor="my-drawer-2" className="drawer-overlay" />
                 <ul className="menu p-4 w-80 h-full text-base dark:bg-[#0C1322] nb_border bg-[#EDF1F7]">
                     <div>
-                        <h1 className="text-3xl mb-5 font-bold text-start  text-dark-grey dark:text-white">
-                            <span className="text-green">CREATIVE</span> EYE
-                        </h1>
+                        <Link to="/">
+                            <h1 className="text-3xl mb-5 font-bold text-start  text-dark-grey dark:text-white">
+                                <span className="text-green">CREATIVE</span> EYE
+                            </h1>
+                        </Link>
                     </div>
                     <div className="flex justify-between items-center">
                         <div className="avatar">
@@ -75,7 +75,7 @@ function Dashboard() {
                                             ? 'text-green'
                                             : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
                                     }
-                                    to="my-classes"
+                                    to="select-classes"
                                 >
                                     <AiFillBook /> My Selected Classes
                                 </NavLink>

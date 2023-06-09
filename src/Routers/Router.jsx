@@ -4,7 +4,9 @@ import Main from '../Layouts/Main';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUsers';
 import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses/ManageClasses';
 import AddClass from '../Pages/Dashboard/Instructor/AddClass/Addclass';
-import EnrollClasses from '../Pages/Dashboard/Student/EnrollClasses/EnrollClasses';
+import MyClasses from '../Pages/Dashboard/Instructor/MyClasses/MyClasses';
+import UpdateClass from '../Pages/Dashboard/Instructor/UpdateClass/UpdateClass';
+import SelectClasses from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
 import Home from '../Pages/Home/Home/Home';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
@@ -38,12 +40,20 @@ const router = new createBrowserRouter([
         ),
         children: [
             {
-                path: 'my-classes',
-                element: <EnrollClasses />,
+                path: 'select-classes',
+                element: <SelectClasses />,
             },
             {
                 path: 'add-class',
                 element: <AddClass />,
+            },
+            {
+                path: 'update-class/:id',
+                element: <UpdateClass />,
+            },
+            {
+                path: 'my-classes',
+                element: <MyClasses />,
             },
             {
                 path: 'users',

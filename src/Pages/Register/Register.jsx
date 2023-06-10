@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -25,14 +26,13 @@ function Register() {
         setError('');
         // host image
         const formData = new FormData();
-        formData.append('image', data.picture[0]);
-        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`, {
-            method: 'POST',
-            body: formData,
-        })
-            .then((res) => res.json())
+        formData.append('file', data.picture[0]);
+        formData.append('upload_preset', 'creativeeye');
+        formData.append('cloud_name', 'dcpdcdfxy');
+        axios
+            .post(`https://api.cloudinary.com/v1_1/dcpdcdfxy/image/upload`, formData)
             .then((image) => {
-                const img = image.data.display_url;
+                const img = image.data.url;
                 if (data.password !== data.confirmPassword) {
                     return setError('Password Do not match');
                 }

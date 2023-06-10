@@ -6,7 +6,7 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 function ClassCard({ classes }) {
     const { _id, className, classImage, instructor, price, seats, bookedSeats } = classes;
-    console.log(seats, bookedSeats);
+
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const handleEnroll = (id) => {

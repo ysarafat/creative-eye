@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import axios from 'axios';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
@@ -16,14 +17,13 @@ function AddClass() {
     } = useForm();
     const onSubmit = (data) => {
         const formData = new FormData();
-        formData.append('image', data.classImage[0]);
-        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`, {
-            method: 'POST',
-            body: formData,
-        })
-            .then((res) => res.json())
+        formData.append('file', data.classImage[0]);
+        formData.append('upload_preset', 'creativeeye');
+        formData.append('cloud_name', 'dcpdcdfxy');
+        axios
+            .post(`https://api.cloudinary.com/v1_1/dcpdcdfxy/image/upload`, formData)
             .then((image) => {
-                const imageUrl = image.data.display_url;
+                const imageUrl = image.data.url;
                 const priceValue = parseFloat(data.price);
                 const newClass = {
                     className: data.className,
@@ -34,6 +34,7 @@ function AddClass() {
                     price: parseFloat(priceValue.toFixed(2)),
                     classDetails: data.classDetails,
                     status: 'pending',
+                    feedback: [],
                 };
                 console.log(newClass);
                 axiosSecure.post('/add-class', newClass).then((data) => {

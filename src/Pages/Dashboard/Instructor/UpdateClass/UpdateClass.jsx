@@ -20,14 +20,13 @@ function UpdateClass() {
     } = useForm();
     const onSubmit = (data) => {
         const formData = new FormData();
-        formData.append('image', data.classImage[0]);
-        fetch(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMGBB_API}`, {
-            method: 'POST',
-            body: formData,
-        })
-            .then((res) => res.json())
+        formData.append('file', data.classImage[0]);
+        formData.append('upload_preset', 'creativeeye');
+        formData.append('cloud_name', 'dcpdcdfxy');
+        axios
+            .post(`https://api.cloudinary.com/v1_1/dcpdcdfxy/image/upload`, formData)
             .then((image) => {
-                const imageUrl = image.data.display_url;
+                const imageUrl = image.data.url;
                 const priceValue = parseFloat(data.price);
                 const updatedata = {
                     className: data.className,

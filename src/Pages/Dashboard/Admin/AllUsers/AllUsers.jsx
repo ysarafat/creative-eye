@@ -28,7 +28,7 @@ function AllUsers() {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        if (data.modifiedCount) {
+                        if (data.modifiedCount > 0) {
                             Swal.fire({
                                 position: 'top-center',
                                 icon: 'success',
@@ -58,7 +58,7 @@ function AllUsers() {
                 })
                     .then((res) => res.json())
                     .then((data) => {
-                        if (data.modifiedCount) {
+                        if (data.modifiedCount > 0) {
                             Swal.fire({
                                 position: 'top-center',
                                 icon: 'success',

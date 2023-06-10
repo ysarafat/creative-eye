@@ -2,8 +2,6 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 
 function ShowFeedback({ isOpen, closeModal, feedback }) {
-    console.log(feedback);
-
     return (
         <Transition appear show={isOpen} as={Fragment}>
             <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -35,7 +33,7 @@ function ShowFeedback({ isOpen, closeModal, feedback }) {
                                     as="h3"
                                     className="text-xl text-center dark:text-white text-gray-900"
                                 >
-                                    Sent Feedback To Instructor
+                                    Feedback From Admin
                                 </Dialog.Title>
                                 {feedback.length === 0 ? (
                                     <div className="dark:text-gray-300 text-gray-600 text-center my-5">

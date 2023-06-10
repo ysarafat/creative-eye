@@ -9,7 +9,6 @@ function MyClasses() {
     const [myClasses, setMyClasses] = useState([]);
     useEffect(() => {
         axiosSecure.get(`/instructor/my-class?email=${user?.email}`).then((data) => {
-            console.log(data.data);
             setMyClasses(data.data);
         });
     }, []);
@@ -17,7 +16,7 @@ function MyClasses() {
     return (
         <div>
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
-                My Select Classes
+                My Classes
             </h1>
             {myClasses.length ? (
                 <div className="overflow-x-auto dark:bg-slate-800 bg-slate-100 p-5 rounded-lg dark:text-white text-dark-grey">

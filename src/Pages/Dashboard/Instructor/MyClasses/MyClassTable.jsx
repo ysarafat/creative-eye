@@ -42,7 +42,7 @@ function MyClassTable({ classes, index }) {
                     onClick={() => setIsModalOpen(true)}
                     className="btn btn-sm capitalize hover:bg-green bg-white hover:text-white border-none"
                 >
-                    <VscFeedback /> Feedback{' '}
+                    <VscFeedback size={25} />
                     <div className="badge badge-primary badge-sm bg-red-500 border-none text-white">
                         +{classes.feedback.length}
                     </div>
@@ -51,7 +51,7 @@ function MyClassTable({ classes, index }) {
             <td>
                 <Link to={`/dashboard/update-class/${classes._id}`}>
                     <button className="btn btn-sm capitalize hover:bg-orange-500 bg-orange-300 hover:text-white border-none">
-                        <MdEdit /> update
+                        <MdEdit size={25} />
                     </button>
                 </Link>
             </td>

@@ -43,7 +43,7 @@ function AddClass() {
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',
-                            title: 'Item added successfully',
+                            title: 'Class added successfully',
                             showConfirmButton: false,
                             timer: 1500,
                         });

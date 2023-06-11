@@ -4,18 +4,18 @@ import Spinner from '../Components/Spinner/Spinner';
 import { AuthContext } from '../Context/AuthProvider';
 import useRole from '../hooks/useRole';
 
-function PrivateRoutes({ children }) {
+function InstructorRoute({ children }) {
     const { user, loading } = useContext(AuthContext);
     const [userRole, isLoading] = useRole();
     const location = useLocation();
 
-    if (loading) {
+    if (isLoading || loading) {
         return <Spinner />;
     }
-    if (user) {
+    if (user && userRole === 'instructor') {
         return children;
     }
     return <Navigate state={{ from: location }} to="/login" replace />;
 }
 
-export default PrivateRoutes;
+export default InstructorRoute;

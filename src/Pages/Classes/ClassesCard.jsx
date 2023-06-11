@@ -7,9 +7,10 @@ import useRole from '../../hooks/useRole';
 function ClassesCard({ classes }) {
     const { _id, className, classImage, instructor, price, seats, bookedSeats, instructorEmail } =
         classes;
-    const [userRoll] = useRole();
-    const [axiosSecure] = useAxiosSecure();
+
     const { user } = useAuth();
+    const [axiosSecure] = useAxiosSecure();
+    const [userRole] = useRole();
     const handleSelect = (id) => {
         const enrollClass = {
             student: user?.displayName,
@@ -37,11 +38,11 @@ function ClassesCard({ classes }) {
             }
         });
     };
-    const cardClasses = `card card-compact w-full rounded-lg bg-white dark:bg-slate-800 shadow-xl ${
-        seats - bookedSeats === 0 ? 'bg-red-500' : ''
-    }`;
+    const isFullyBooked = seats - bookedSeats === 0;
+    const cardBgColor = isFullyBooked ? 'bg-red-300 dark:bg-red-500' : 'bg-white dark:bg-slate-800';
+
     return (
-        <div className={cardClasses}>
+        <div className={`card card-compact w-full rounded-lg ${cardBgColor}  shadow-xl`}>
             <figure>
                 <img className="h-[300px] w-full" src={classImage} alt="class" />
             </figure>
@@ -62,7 +63,9 @@ function ClassesCard({ classes }) {
             </div>
             <div className="rounded-b-lg">
                 <button
-                    disabled={seats === bookedSeats}
+                    disabled={
+                        seats === bookedSeats || userRole === 'admin' || userRole === 'instructor'
+                    }
                     onClick={() => handleSelect(_id)}
                     className=" h-11 text-lg rounded-b-lg disabled:bg-gray-600 bg-green w-full text-white hover:bg-dark-grey border-none "
                 >

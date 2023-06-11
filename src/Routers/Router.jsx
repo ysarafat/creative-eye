@@ -7,7 +7,6 @@ import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses/ManageClasses'
 import AddClass from '../Pages/Dashboard/Instructor/AddClass/AddClass';
 import MyClasses from '../Pages/Dashboard/Instructor/MyClasses/MyClasses';
 import UpdateClass from '../Pages/Dashboard/Instructor/UpdateClass/UpdateClass';
-import EnrollClass from '../Pages/Dashboard/Student/EnrolledClass/EnrolledClass';
 import Payment from '../Pages/Dashboard/Student/Payment/Payment';
 import PaymentHistory from '../Pages/Dashboard/Student/Payment/PaymentHistory';
 import SelectClasses from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
@@ -15,7 +14,9 @@ import Home from '../Pages/Home/Home/Home';
 import Instructors from '../Pages/Instructors/Instructors';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
-import PrivateRoutes from './PrivateRoutes';
+import AdminRoute from './AdminRoute';
+import InstructorRoute from './InstructorRoute';
+import StudentRoute from './StudentRoute';
 
 const router = new createBrowserRouter([
     {
@@ -46,82 +47,74 @@ const router = new createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: (
-            <PrivateRoutes>
-                <Dashboard />
-            </PrivateRoutes>
-        ),
+        element: <Dashboard />,
         children: [
             {
                 path: 'select-classes',
                 element: (
-                    <PrivateRoutes>
+                    <StudentRoute>
                         <SelectClasses />
-                    </PrivateRoutes>
+                    </StudentRoute>
                 ),
             },
             {
                 path: 'payment/:id',
                 element: (
-                    <PrivateRoutes>
+                    <StudentRoute>
                         <Payment />
-                    </PrivateRoutes>
+                    </StudentRoute>
                 ),
             },
             {
                 path: 'payment-history',
                 element: (
-                    <PrivateRoutes>
+                    <StudentRoute>
                         <PaymentHistory />
-                    </PrivateRoutes>
+                    </StudentRoute>
                 ),
             },
             {
                 path: 'enrolled-classes',
-                element: (
-                    <PrivateRoutes>
-                        <EnrollClass />
-                    </PrivateRoutes>
-                ),
+                element: <StudentRoute />,
             },
             {
                 path: 'add-class',
                 element: (
-                    <PrivateRoutes>
+                    <InstructorRoute>
                         <AddClass />
-                    </PrivateRoutes>
+                    </InstructorRoute>
                 ),
             },
             {
                 path: 'update-class/:id',
                 element: (
-                    <PrivateRoutes>
+                    <InstructorRoute>
                         <UpdateClass />
-                    </PrivateRoutes>
+                    </InstructorRoute>
                 ),
             },
             {
                 path: 'my-classes',
                 element: (
-                    <PrivateRoutes>
+                    <InstructorRoute>
                         <MyClasses />
-                    </PrivateRoutes>
+                    </InstructorRoute>
                 ),
             },
             {
                 path: 'users',
                 element: (
-                    <PrivateRoutes>
+                    <AdminRoute>
                         <AllUsers />
-                    </PrivateRoutes>
+                    </AdminRoute>
                 ),
             },
             {
                 path: 'manage-classes',
                 element: (
-                    <PrivateRoutes>
+                    <AdminRoute>
                         <ManageClasses />
-                    </PrivateRoutes>
+                    </AdminRoute>
                 ),
             },
         ],

@@ -15,7 +15,9 @@ function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
+    console.log(location);
     const from = location.state?.from?.pathname || '/';
+
     const {
         register,
         handleSubmit,

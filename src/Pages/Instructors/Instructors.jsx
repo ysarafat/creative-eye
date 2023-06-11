@@ -9,6 +9,7 @@ function Instructors() {
     useEffect(() => {
         axios.get('http://localhost:5000/instructors').then((res) => setInstructors(res.data));
     }, []);
+
     return (
         <div>
             <PageTitleBanner title="our all legend instructor" subtitle="hello" />

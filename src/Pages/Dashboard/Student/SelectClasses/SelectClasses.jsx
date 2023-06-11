@@ -1,8 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { MdDeleteOutline, MdPayment } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useEnrolled from '../../../../hooks/selectedClasses';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-import useEnrolled from '../../../../hooks/useEnrolled';
 
 function EnrollClass() {
     const [enrolledClasses, refetch] = useEnrolled();
@@ -71,9 +73,11 @@ function EnrollClass() {
                                     <td>{classes.instructor}</td>
                                     <td>{classes.price.toFixed(2)}</td>
                                     <td>
-                                        <button className="btn btn-sm bg-white hover:bg-green capitalize hover:text-white text-dark-grey	border-none">
-                                            <MdPayment /> Pay now
-                                        </button>
+                                        <Link to={`/dashboard/payment/${classes._id}`}>
+                                            <button className="btn btn-sm bg-white hover:bg-green capitalize hover:text-white text-dark-grey	border-none">
+                                                <MdPayment /> Pay now
+                                            </button>
+                                        </Link>
                                     </td>
                                     <td>
                                         <button

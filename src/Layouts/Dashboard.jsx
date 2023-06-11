@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { AiFillBook, AiFillHome } from 'react-icons/ai';
+import { AiFillBook, AiFillHome, AiFillWallet } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { HiBars3BottomLeft } from 'react-icons/hi2';
 import { Link, NavLink, Outlet } from 'react-router-dom';
@@ -90,6 +90,18 @@ function Dashboard() {
                                     to="my-classes"
                                 >
                                     <AiFillBook /> My Enroll Classes
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="payment-history"
+                                >
+                                    <AiFillWallet /> Payment History
                                 </NavLink>
                             </li>
                         </>

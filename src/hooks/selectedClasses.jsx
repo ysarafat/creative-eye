@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from './useAuth';
 import useAxiosSecure from './useAxiosSecure';
 
-const useEnrolled = () => {
+const selectedClasses = () => {
     const { user, loading } = useAuth();
     const [axiosSecure] = useAxiosSecure();
     const { data: enrolledClasses = [], refetch } = useQuery({
@@ -16,4 +16,4 @@ const useEnrolled = () => {
     return [enrolledClasses, refetch];
 };
 
-export default useEnrolled;
+export default selectedClasses;

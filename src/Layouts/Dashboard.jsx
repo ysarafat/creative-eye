@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import {
-    AiFillBook,
-    AiFillHome,
     AiOutlineBook,
     AiOutlineDashboard,
     AiOutlineHome,
     AiOutlineLogout,
-    AiOutlineWallet
+    AiOutlineWallet,
 } from 'react-icons/ai';
+import { BiBookAdd } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
 import { HiBars3BottomLeft } from 'react-icons/hi2';
 import { MdOutlineBookmarkAdded } from 'react-icons/md';
@@ -157,72 +156,137 @@ function Dashboard() {
                         </>
                     )}
                     {userRole === 'instructor' && (
-                        <li className="text-lg">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="instructor-home"
-                            >
-                                <AiFillHome size={25} /> Instructor Home
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="add-class"
-                            >
-                                <AiFillBook size={25} /> Add Class
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="my-classes"
-                            >
-                                <AiFillBook size={25} /> My Classes
-                            </NavLink>
-                        </li>
+                        <>
+                            {' '}
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="instructor-home"
+                                >
+                                    <AiOutlineDashboard size={25} /> Instructor Home
+                                </NavLink>{' '}
+                            </li>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="add-class"
+                                >
+                                    <BiBookAdd size={25} /> Add Class
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="my-classes"
+                                >
+                                    <AiOutlineBook size={25} /> My Classes
+                                </NavLink>
+                            </li>
+                            <div className="divider dark:divider-gray-300" />
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="/"
+                                >
+                                    <AiOutlineHome size={25} /> Back To Home
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'hover:text-green dark:text-white'
+                                            : ' text-green duration-300 dark:text-white'
+                                    }
+                                    onClick={handleLogout}
+                                >
+                                    <AiOutlineLogout size={25} /> Logout
+                                </NavLink>
+                            </li>
+                        </>
                     )}
                     {userRole === 'admin' && (
-                        <li className="text-lg">
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="admin-home"
-                            >
-                                <AiFillHome size={25} /> Admin Home
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="manage-classes"
-                            >
-                                <AiFillBook size={25} /> Manage Classes
-                            </NavLink>
-                            <NavLink
-                                className={({ isActive }) =>
-                                    isActive
-                                        ? 'text-green'
-                                        : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
-                                }
-                                to="users"
-                            >
-                                <FaUsers size={25} /> Users
-                            </NavLink>
-                        </li>
+                        <>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="admin-home"
+                                >
+                                    <AiOutlineDashboard size={25} /> Dashboard
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                {' '}
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="manage-classes"
+                                >
+                                    <AiOutlineBook size={25} /> Manage Classes
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                {' '}
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="users"
+                                >
+                                    <FaUsers size={25} /> Users
+                                </NavLink>
+                            </li>{' '}
+                            <div className="divider dark:divider-gray-300" />
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="/"
+                                >
+                                    <AiOutlineHome size={25} /> Back To Home
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'hover:text-green dark:text-white'
+                                            : ' text-green duration-300 dark:text-white'
+                                    }
+                                    onClick={handleLogout}
+                                >
+                                    <AiOutlineLogout size={25} /> Logout
+                                </NavLink>
+                            </li>
+                        </>
                     )}
                 </ul>
             </div>

@@ -1,9 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Dashboard from '../Layouts/Dashboard';
 import Main from '../Layouts/Main';
+import Classes from '../Pages/Classes/Classes';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers/AllUsers';
 import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses/ManageClasses';
-import AddClass from '../Pages/Dashboard/Instructor/AddClass/Addclass';
+import AddClass from '../Pages/Dashboard/Instructor/AddClass/AddClass';
 import MyClasses from '../Pages/Dashboard/Instructor/MyClasses/MyClasses';
 import UpdateClass from '../Pages/Dashboard/Instructor/UpdateClass/UpdateClass';
 import EnrollClass from '../Pages/Dashboard/Student/EnrolledClass/EnrolledClass';
@@ -32,6 +33,10 @@ const router = new createBrowserRouter([
                 path: '/login',
                 element: <Login />,
             },
+            {
+                path: 'classes',
+                element: <Classes />,
+            },
         ],
     },
     {
@@ -44,39 +49,75 @@ const router = new createBrowserRouter([
         children: [
             {
                 path: 'select-classes',
-                element: <SelectClasses />,
+                element: (
+                    <PrivateRoutes>
+                        <SelectClasses />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'payment/:id',
-                element: <Payment />,
+                element: (
+                    <PrivateRoutes>
+                        <Payment />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory />,
+                element: (
+                    <PrivateRoutes>
+                        <PaymentHistory />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'enrolled-classes',
-                element: <EnrollClass />,
+                element: (
+                    <PrivateRoutes>
+                        <EnrollClass />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'add-class',
-                element: <AddClass />,
+                element: (
+                    <PrivateRoutes>
+                        <AddClass />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'update-class/:id',
-                element: <UpdateClass />,
+                element: (
+                    <PrivateRoutes>
+                        <UpdateClass />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'my-classes',
-                element: <MyClasses />,
+                element: (
+                    <PrivateRoutes>
+                        <MyClasses />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'users',
-                element: <AllUsers />,
+                element: (
+                    <PrivateRoutes>
+                        <AllUsers />
+                    </PrivateRoutes>
+                ),
             },
             {
                 path: 'manage-classes',
-                element: <ManageClasses />,
+                element: (
+                    <PrivateRoutes>
+                        <ManageClasses />
+                    </PrivateRoutes>
+                ),
             },
         ],
     },

@@ -45,7 +45,7 @@ function MyClasses() {
                 </div>
             ) : (
                 <div className="flex items-center justify-center  h-[500px]">
-                    <h1 className="text-2xl">You have not selected any class</h1>
+                    <h1 className="text-2xl">You have not added any class</h1>
                 </div>
             )}
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../../../Components/Container/Container';
-import ClassCard from '../../Shared/ClassCard/ClassCard';
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
+import ClassCard from './ClassCard';
 
 function PopularClasses() {
     const [popularClasses, setPopularClasses] = useState([]);

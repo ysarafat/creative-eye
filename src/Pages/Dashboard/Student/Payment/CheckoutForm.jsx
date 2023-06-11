@@ -73,7 +73,13 @@ function CheckoutForm({ price, selectedClasses, id }) {
                 image: findClass?.classImage,
                 classId: findClass.classId,
             };
-            axiosSecure.post('/payment', paymentDetails).then((res) => console.log(res.data));
+            axiosSecure.post('/payment', paymentDetails).then((res) => {
+                if (res.data.insertedId) {
+                    axiosSecure
+                        .delete(`/delete-selected-class/${findClass?._id}`)
+                        .then((res) => console.log(res));
+                }
+            });
         }
     };
     return (

@@ -20,7 +20,7 @@ function EnrollClass() {
             confirmButtonText: 'Yes, delete it!',
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.delete(`/delete-enrolled-class/${classes._id}`).then((res) => {
+                axiosSecure.delete(`/delete-selected-class/${classes._id}`).then((res) => {
                     if (res.data.deletedCount > 0) {
                         Swal.fire({
                             position: 'top-center',

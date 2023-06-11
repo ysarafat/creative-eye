@@ -8,7 +8,6 @@ function ClassesCard({ classes }) {
     const { _id, className, classImage, instructor, price, seats, bookedSeats, instructorEmail } =
         classes;
     const [userRoll] = useRole();
-    console.log(userRoll);
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const handleSelect = (id) => {
@@ -24,7 +23,6 @@ function ClassesCard({ classes }) {
         };
 
         axiosSecure.post('/select-class', enrollClass).then((data) => {
-            console.log(data.data.message);
             if (data.data.message) {
                 Swal.fire('Sorry', `${data.data.message}`, 'warning');
             }
@@ -64,7 +62,7 @@ function ClassesCard({ classes }) {
             </div>
             <div className="rounded-b-lg">
                 <button
-                    disabled={seats === bookedSeats || userRoll === 'admin' || 'instructor'}
+                    disabled={seats === bookedSeats}
                     onClick={() => handleSelect(_id)}
                     className=" h-11 text-lg rounded-b-lg disabled:bg-gray-600 bg-green w-full text-white hover:bg-dark-grey border-none "
                 >

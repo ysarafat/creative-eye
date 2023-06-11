@@ -12,6 +12,7 @@ import Payment from '../Pages/Dashboard/Student/Payment/Payment';
 import PaymentHistory from '../Pages/Dashboard/Student/Payment/PaymentHistory';
 import SelectClasses from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
 import Home from '../Pages/Home/Home/Home';
+import Instructors from '../Pages/Instructors/Instructors';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import PrivateRoutes from './PrivateRoutes';
@@ -36,6 +37,10 @@ const router = new createBrowserRouter([
             {
                 path: 'classes',
                 element: <Classes />,
+            },
+            {
+                path: 'instructors',
+                element: <Instructors />,
             },
         ],
     },

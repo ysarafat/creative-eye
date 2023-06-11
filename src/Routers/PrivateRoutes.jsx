@@ -9,10 +9,10 @@ function PrivateRoutes({ children }) {
     const [userRole, isLoading] = useRole();
     const location = useLocation();
 
-    if (loading || isLoading) {
+    if (loading) {
         return <Spinner />;
     }
-    if (user || userRole) {
+    if (user) {
         return children;
     }
     return <Navigate state={{ from: location }} to="/login" replace />;

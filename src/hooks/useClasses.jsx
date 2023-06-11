@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import useAxiosSecure from './useAxiosSecure';
 
 const useClasses = () => {
@@ -10,7 +11,7 @@ const useClasses = () => {
     } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const response = await axiosSecure.get(`/classes`);
+            const response = await axios.get(`http://localhost:5000/classes`);
             return response.data;
         },
     });

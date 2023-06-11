@@ -1,11 +1,11 @@
-import axios from 'axios';
 import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 function ClassCard({ classes }) {
-    const { _id, className, classImage, instructor, price, seats, bookedSeats } = classes;
+    const { _id, className, classImage, instructor, price, seats, bookedSeats, instructorEmail } =
+        classes;
 
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
@@ -18,32 +18,21 @@ function ClassCard({ classes }) {
             price,
             instructor,
             classImage,
+            instructorEmail,
         };
 
-        axiosSecure.post('/enroll-class', enrollClass).then((data) => {
+        axiosSecure.post('/select-class', enrollClass).then((data) => {
             console.log(data.data.message);
             if (data.data.message) {
-                // Swal.fire({
-                //     position: 'top-center',
-                //     icon: 'warning',
-                //     title: `${data.data.message}`,
-                //     showConfirmButton: false,
-                //     timer: 1500,
-                // });
                 Swal.fire('Sorry', `${data.data.message}`, 'warning');
             }
             if (data.data.insertedId) {
-                axios.put(`http://localhost:5000/booked-seat/${id}`).then((res) => {
-                    console.log(res.data);
-                    if (res.data.modifiedCount > 0) {
-                        Swal.fire({
-                            position: 'top-center',
-                            icon: 'success',
-                            title: 'Enroll Success',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                    }
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Add to select Success',
+                    showConfirmButton: false,
+                    timer: 1500,
                 });
             }
         });
@@ -76,7 +65,7 @@ function ClassCard({ classes }) {
                     onClick={() => handleEnroll(_id)}
                     className=" h-11 text-lg rounded-b-lg bg-green w-full text-white hover:bg-dark-grey border-none "
                 >
-                    Enroll Now
+                    Select Now
                 </button>
             </div>
         </div>

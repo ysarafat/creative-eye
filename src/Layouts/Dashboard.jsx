@@ -1,16 +1,41 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import { AiFillBook, AiFillHome, AiFillWallet } from 'react-icons/ai';
+import {
+    AiFillBook,
+    AiFillHome,
+    AiOutlineBook,
+    AiOutlineDashboard,
+    AiOutlineHome,
+    AiOutlineLogout,
+    AiOutlineWallet
+} from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { HiBars3BottomLeft } from 'react-icons/hi2';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { MdOutlineBookmarkAdded } from 'react-icons/md';
+import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import Theme from '../Components/Theme/Theme';
 import useAuth from '../hooks/useAuth';
 import useRole from '../hooks/useRole';
 
 function Dashboard() {
-    const { user } = useAuth();
+    const { user, logoutUser } = useAuth();
     const [userRole] = useRole();
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        logoutUser()
+            .then(() => {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'Logout Successful',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                navigate('/', { replace: true });
+            })
+            .catch((err) => console.log(err.message));
+    };
 
     return (
         <div className="drawer lg:drawer-open">
@@ -56,7 +81,7 @@ function Dashboard() {
                     <div className="divider dark:divider-gray-300" />
                     {userRole === 'student' && (
                         <>
-                            <li>
+                            <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -65,10 +90,10 @@ function Dashboard() {
                                     }
                                     to="user-home"
                                 >
-                                    <AiFillHome /> User Home
+                                    <AiOutlineDashboard size={25} /> Dashboard
                                 </NavLink>
                             </li>
-                            <li>
+                            <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -77,22 +102,22 @@ function Dashboard() {
                                     }
                                     to="select-classes"
                                 >
-                                    <AiFillBook /> My Selected Classes
+                                    <MdOutlineBookmarkAdded size={25} /> My Selected Classes
                                 </NavLink>
                             </li>
-                            <li>
+                            <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
                                             ? 'text-green'
                                             : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
                                     }
-                                    to="my-classes"
+                                    to="enrolled-classes"
                                 >
-                                    <AiFillBook /> My Enroll Classes
+                                    <AiOutlineBook size={25} /> My Enrolled Classes
                                 </NavLink>
                             </li>
-                            <li>
+                            <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -101,13 +126,38 @@ function Dashboard() {
                                     }
                                     to="payment-history"
                                 >
-                                    <AiFillWallet /> Payment History
+                                    <AiOutlineWallet size={25} /> Payment History
+                                </NavLink>
+                            </li>
+                            <div className="divider dark:divider-gray-300" />
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'text-green'
+                                            : 'text-dark-grey   hover:text-green duration-300 dark:text-white'
+                                    }
+                                    to="/"
+                                >
+                                    <AiOutlineHome size={25} /> Back To Home
+                                </NavLink>
+                            </li>
+                            <li className="text-lg">
+                                <NavLink
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'hover:text-green'
+                                            : ' text-green duration-300 dark:text-white'
+                                    }
+                                    onClick={handleLogout}
+                                >
+                                    <AiOutlineLogout size={25} /> Logout
                                 </NavLink>
                             </li>
                         </>
                     )}
                     {userRole === 'instructor' && (
-                        <li>
+                        <li className="text-lg">
                             <NavLink
                                 className={({ isActive }) =>
                                     isActive
@@ -116,7 +166,7 @@ function Dashboard() {
                                 }
                                 to="instructor-home"
                             >
-                                <AiFillHome /> Instructor Home
+                                <AiFillHome size={25} /> Instructor Home
                             </NavLink>
                             <NavLink
                                 className={({ isActive }) =>
@@ -126,7 +176,7 @@ function Dashboard() {
                                 }
                                 to="add-class"
                             >
-                                <AiFillBook /> Add Class
+                                <AiFillBook size={25} /> Add Class
                             </NavLink>
                             <NavLink
                                 className={({ isActive }) =>
@@ -136,12 +186,12 @@ function Dashboard() {
                                 }
                                 to="my-classes"
                             >
-                                <AiFillBook /> My Classes
+                                <AiFillBook size={25} /> My Classes
                             </NavLink>
                         </li>
                     )}
                     {userRole === 'admin' && (
-                        <li>
+                        <li className="text-lg">
                             <NavLink
                                 className={({ isActive }) =>
                                     isActive
@@ -150,7 +200,7 @@ function Dashboard() {
                                 }
                                 to="admin-home"
                             >
-                                <AiFillHome /> Admin Home
+                                <AiFillHome size={25} /> Admin Home
                             </NavLink>
                             <NavLink
                                 className={({ isActive }) =>
@@ -160,7 +210,7 @@ function Dashboard() {
                                 }
                                 to="manage-classes"
                             >
-                                <AiFillBook /> Manage Classes
+                                <AiFillBook size={25} /> Manage Classes
                             </NavLink>
                             <NavLink
                                 className={({ isActive }) =>
@@ -170,7 +220,7 @@ function Dashboard() {
                                 }
                                 to="users"
                             >
-                                <FaUsers /> Users
+                                <FaUsers size={25} /> Users
                             </NavLink>
                         </li>
                     )}

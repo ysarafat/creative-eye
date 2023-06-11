@@ -1,8 +1,12 @@
 /* eslint-disable no-useless-return */
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+// import './checkoutForm.css';
 
 function CheckoutForm({ price, selectedClasses, id }) {
     const stripe = useStripe();
@@ -13,11 +17,13 @@ function CheckoutForm({ price, selectedClasses, id }) {
     const [clientSecret, setClientSecret] = useState('');
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
+    const navigate = useNavigate();
     const findClass = selectedClasses.find((cls) => cls._id === id);
+    const existingPayment = { classId: id, email: user?.email, price };
     useEffect(() => {
         if (price > 0) {
             axiosSecure
-                .post('/create-payment-intent', { price })
+                .post('/create-payment-intent', existingPayment)
                 .then((res) => setClientSecret(res.data.clientSecret));
         }
     }, [price, axiosSecure]);
@@ -70,28 +76,61 @@ function CheckoutForm({ price, selectedClasses, id }) {
                 status: paymentIntent.status,
                 className: findClass?.class,
                 instructor: findClass?.instructor,
+                instructorEmail: findClass?.instructorEmail,
                 image: findClass?.classImage,
                 classId: findClass.classId,
             };
             axiosSecure.post('/payment', paymentDetails).then((res) => {
                 if (res.data.insertedId) {
-                    axiosSecure
-                        .delete(`/delete-selected-class/${findClass?._id}`)
-                        .then((res) => console.log(res));
+                    axiosSecure.delete(`/delete-selected-class/${findClass?._id}`).then((res) => {
+                        if (res.data.deletedCount > 0) {
+                            axios
+                                .put(`http://localhost:5000/booked-seat/${findClass.classId}`)
+                                .then((res) => {
+                                    if (res.data.modifiedCount > 0) {
+                                        Swal.fire(
+                                            'Enrolled Success',
+                                            `Transaction ID: ${paymentIntent.id}`,
+                                            'success'
+                                        );
+                                        navigate('/dashboard/enrolled-classes', { replace: true });
+                                    }
+                                });
+                        }
+                    });
                 }
             });
         }
     };
     return (
-        <>
-            {error && <p className="text-red-500">{error}</p>}
-            {transactionId && (
-                <p className="text-green">
-                    Your transaction is Successful. Transaction id: {transactionId}
-                </p>
-            )}
-            <form onSubmit={handleSubmit}>
+        <div className="flex justify-center items-center h-[500px]">
+            <form
+                className=" bg-slate-100 dark:bg-slate-800 rounded-lg p-10 "
+                onSubmit={handleSubmit}
+            >
+                {error && <p className="text-red-500 text-lg text-center mb-5">{error}</p>}
+                {transactionId && (
+                    <p className="text-green text-center mb-5">
+                        Your transaction is Successful. Transaction ID: {transactionId}
+                    </p>
+                )}
+                <label htmlFor="">Full Name (read only)</label>
+                <input
+                    type="text"
+                    className="outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white focus:border-green py-3 "
+                    defaultValue={user?.displayName}
+                    readOnly
+                />
+                <label htmlFor="">Email Address (read only)</label>
+                <input
+                    type="text"
+                    className="outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white focus:border-green py-3 "
+                    defaultValue={user?.email}
+                    readOnly
+                />
+                <label htmlFor="">Card Details</label>
                 <CardElement
+                    className="outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white focus:border-green py-3 "
                     options={{
                         style: {
                             base: {
@@ -115,7 +154,7 @@ function CheckoutForm({ price, selectedClasses, id }) {
                     Pay
                 </button>
             </form>
-        </>
+        </div>
     );
 }
 

@@ -6,6 +6,7 @@ import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses/ManageClasses'
 import AddClass from '../Pages/Dashboard/Instructor/AddClass/Addclass';
 import MyClasses from '../Pages/Dashboard/Instructor/MyClasses/MyClasses';
 import UpdateClass from '../Pages/Dashboard/Instructor/UpdateClass/UpdateClass';
+import EnrollClass from '../Pages/Dashboard/Student/EnrolledClass/EnrolledClass';
 import Payment from '../Pages/Dashboard/Student/Payment/Payment';
 import PaymentHistory from '../Pages/Dashboard/Student/Payment/PaymentHistory';
 import SelectClasses from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
@@ -52,6 +53,10 @@ const router = new createBrowserRouter([
             {
                 path: 'payment-history',
                 element: <PaymentHistory />,
+            },
+            {
+                path: 'enrolled-classes',
+                element: <EnrollClass />,
             },
             {
                 path: 'add-class',

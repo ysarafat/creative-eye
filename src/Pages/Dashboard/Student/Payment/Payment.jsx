@@ -15,10 +15,19 @@ function Payment() {
 
     return (
         <div>
-            <h1>Payment Page</h1>
+            <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
+                Payment
+            </h1>
             <Elements stripe={stripePromise}>
                 <CheckoutForm selectedClasses={selectedClasses} price={classPrice} id={id} />
             </Elements>
+            <div>
+                <img
+                    src="https://i.ibb.co/VvzK9Pq/pngegg.png"
+                    className="w-[800px] h-[200px] mx-auto"
+                    alt=""
+                />
+            </div>
         </div>
     );
 }

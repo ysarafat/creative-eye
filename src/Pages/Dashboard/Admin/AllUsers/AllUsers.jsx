@@ -4,6 +4,7 @@ import React from 'react';
 import { FaUserCog, FaUserTie } from 'react-icons/fa';
 import { LuTrash } from 'react-icons/lu';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 function AllUsers() {
@@ -107,6 +108,7 @@ function AllUsers() {
 
     return (
         <div className="max-w-full ">
+            <DynamicTitle title="Manage Users" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 All Users
             </h1>

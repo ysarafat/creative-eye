@@ -1,13 +1,15 @@
 import React from 'react';
+import DynamicTitle from '../../../Components/DynamicTitle/DynamicTitle';
 import Banner from '../Banner/Banner';
+import Blog from '../Blog/Blog';
 import PopularClasses from '../PopularClasses/PopularClasses';
 import PopularInstructor from '../PopularInstructor/PopularInstructor';
 import SubscribeForm from '../SubscribeForm/SubscribeForm';
-import Blog from './Blog/Blog';
 
 function Home() {
     return (
         <div>
+            <DynamicTitle title="Home" />
             <Banner />
             <PopularClasses />
             <PopularInstructor />

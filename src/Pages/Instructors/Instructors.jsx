@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../../Components/Container/Container';
+import DynamicTitle from '../../Components/DynamicTitle/DynamicTitle';
 import PageTitleBanner from '../Shared/PageTitleBanner.jsx/PageTitleBanner';
 
 function Instructors() {
@@ -14,6 +15,7 @@ function Instructors() {
 
     return (
         <div>
+            <DynamicTitle title="Instructor" />
             <PageTitleBanner
                 title="our all legend instructor"
                 subtitle="Introducing Our Legendary Instructors: Experts Who Inspire and Empower"

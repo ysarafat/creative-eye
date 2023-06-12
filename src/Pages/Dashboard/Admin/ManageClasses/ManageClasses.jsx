@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import Spinner from '../../../../Components/Spinner/Spinner';
 import useClasses from '../../../../hooks/useClasses';
 import ManageClassesTable from './ManageClassesTable';
@@ -9,6 +10,7 @@ function ManageClasses() {
 
     return (
         <div>
+            <DynamicTitle title="Manage Classes" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 Manage Classes
             </h1>

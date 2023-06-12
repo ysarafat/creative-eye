@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import Container from '../../Components/Container/Container';
+import DynamicTitle from '../../Components/DynamicTitle/DynamicTitle';
 import { AuthContext } from '../../Context/AuthProvider';
 import image from '../../assets/register/Fingerprint.svg';
 import GoogleLogin from '../Shared/SocialLogin/GoogleLogin';
@@ -78,6 +79,7 @@ function Register() {
 
     return (
         <div className="my-14">
+            <DynamicTitle title="Register" />
             <Container>
                 <div className="flex flex-col-reverse lg:flex-row items-center justify-between">
                     <div className='className=" w-full lg:w-1/2 text-center" '>

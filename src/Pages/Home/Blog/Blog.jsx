@@ -1,8 +1,8 @@
 import React from 'react';
 import { Zoom } from 'react-awesome-reveal';
 import { BsCalendar3 } from 'react-icons/bs';
-import Container from '../../../../Components/Container/Container';
-import SectionTitle from '../../../Shared/SectionTitle/SectionTitle';
+import Container from '../../../Components/Container/Container';
+import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 
 function Blog() {
     return (

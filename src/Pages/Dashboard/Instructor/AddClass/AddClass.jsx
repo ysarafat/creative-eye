@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
@@ -56,6 +57,7 @@ function AddClass() {
     };
     return (
         <div className="">
+            <DynamicTitle title="Add Class" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 Add Class
             </h1>

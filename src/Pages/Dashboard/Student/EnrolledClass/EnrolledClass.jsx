@@ -1,7 +1,6 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import { MdInfo } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
@@ -17,6 +16,7 @@ function EnrolledClass() {
     console.log(enrolled);
     return (
         <div>
+            <DynamicTitle title="My Enrolled Classes" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 My Enrolled Classes
             </h1>
@@ -33,7 +33,6 @@ function EnrolledClass() {
                                 <th>Instructor Email</th>
                                 <th>Price</th>
                                 <th>Enrolled date & time</th>
-                                <th>View Details</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,13 +54,6 @@ function EnrolledClass() {
                                     <td>{classes.instructorEmail}</td>
                                     <td>{classes.price.toFixed(2)}</td>
                                     <td>{moment(classes.date).format('LLL')}</td>
-                                    <td>
-                                        <Link to={`/dashboard/payment/${classes._id}`}>
-                                            <button className="btn btn-sm bg-white hover:bg-green capitalize hover:text-white text-dark-grey	border-none">
-                                                <MdInfo /> View Details
-                                            </button>
-                                        </Link>
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>

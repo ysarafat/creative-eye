@@ -1,5 +1,6 @@
 import moment from 'moment/moment';
 import React, { useEffect, useState } from 'react';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
@@ -14,6 +15,7 @@ function PaymentHistory() {
     }, []);
     return (
         <div>
+            <DynamicTitle title="My Payment History" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 My pay
             </h1>

@@ -3,6 +3,7 @@ import React from 'react';
 import { MdDeleteOutline, MdPayment } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useEnrolled from '../../../../hooks/selectedClasses';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
@@ -37,6 +38,7 @@ function EnrollClass() {
     };
     return (
         <div>
+            <DynamicTitle title="My Selected Classes" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 My Select Classes
             </h1>

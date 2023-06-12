@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from '../../Components/Container/Container';
+import DynamicTitle from '../../Components/DynamicTitle/DynamicTitle';
 import useClasses from '../../hooks/useClasses';
 import PageTitleBanner from '../Shared/PageTitleBanner.jsx/PageTitleBanner';
 import ClassesCard from './ClassesCard';
@@ -10,6 +11,7 @@ function Classes() {
 
     return (
         <>
+            <DynamicTitle title="Classes" />
             <PageTitleBanner
                 title="our All classes"
                 subtitle="Through the Lens, Unveiling the Art and Craft of Photography"

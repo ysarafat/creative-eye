@@ -2,6 +2,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import DynamicTitle from '../../../../Components/DynamicTitle/DynamicTitle';
 import useEnrolled from '../../../../hooks/selectedClasses';
 import CheckoutForm from './CheckoutForm';
 
@@ -14,6 +15,7 @@ function Payment() {
 
     return (
         <div>
+            <DynamicTitle title="Checkout" />
             <h1 className="text-center text-3xl font-bold dark:text-white text-dark-grey mb-5 ">
                 Payment
             </h1>

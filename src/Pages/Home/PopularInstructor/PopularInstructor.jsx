@@ -7,7 +7,7 @@ import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 function PopularInstructor() {
     const [popularInstructor, setPopularInstructor] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/popular-instructor').then((res) => {
+        axios.get('https://creative-eye.onrender.com/popular-instructor').then((res) => {
             setPopularInstructor(res.data);
         });
     }, []);

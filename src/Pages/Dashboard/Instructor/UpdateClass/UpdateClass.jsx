@@ -15,7 +15,7 @@ function UpdateClass() {
     const { data: singleClass } = useQuery({
         queryKey: ['id', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/class/${id}`);
+            const res = await axios.get(`https://creative-eye.onrender.com/class/${id}`);
             return res.data;
         },
     });

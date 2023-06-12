@@ -7,21 +7,25 @@ import ManageClasses from '../Pages/Dashboard/Admin/ManageClasses/ManageClasses'
 import AddClass from '../Pages/Dashboard/Instructor/AddClass/AddClass';
 import MyClasses from '../Pages/Dashboard/Instructor/MyClasses/MyClasses';
 import UpdateClass from '../Pages/Dashboard/Instructor/UpdateClass/UpdateClass';
+import EnrolledClass from '../Pages/Dashboard/Student/EnrolledClass/EnrolledClass';
 import Payment from '../Pages/Dashboard/Student/Payment/Payment';
 import PaymentHistory from '../Pages/Dashboard/Student/Payment/PaymentHistory';
-import SelectClasses from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
+import { default as SelectClasses } from '../Pages/Dashboard/Student/SelectClasses/SelectClasses';
+import Error from '../Pages/Error/Error';
 import Home from '../Pages/Home/Home/Home';
 import Instructors from '../Pages/Instructors/Instructors';
 import Login from '../Pages/Login/Login';
 import Register from '../Pages/Register/Register';
 import AdminRoute from './AdminRoute';
 import InstructorRoute from './InstructorRoute';
+import PrivateRoute from './PrivateRoute';
 import StudentRoute from './StudentRoute';
 
 const router = new createBrowserRouter([
     {
         path: '/',
         element: <Main />,
+        errorElement: <Error />,
         children: [
             {
                 path: '/',
@@ -47,7 +51,11 @@ const router = new createBrowserRouter([
     },
     {
         path: 'dashboard',
-        element: <Dashboard />,
+        element: (
+            <PrivateRoute>
+                <Dashboard />
+            </PrivateRoute>
+        ),
         children: [
             {
                 path: 'select-classes',
@@ -75,7 +83,11 @@ const router = new createBrowserRouter([
             },
             {
                 path: 'enrolled-classes',
-                element: <StudentRoute />,
+                element: (
+                    <StudentRoute>
+                        <EnrolledClass />
+                    </StudentRoute>
+                ),
             },
             {
                 path: 'add-class',

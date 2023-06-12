@@ -11,7 +11,7 @@ const useClasses = () => {
     } = useQuery({
         queryKey: ['classes'],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:5000/classes`);
+            const response = await axios.get(`https://creative-eye.onrender.com/classes`);
             return response.data;
         },
     });

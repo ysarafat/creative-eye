@@ -13,7 +13,7 @@ function EnrolledClass() {
         axiosSecure.get(`/my-enrolled?email=${user?.email}`).then((data) => {
             setEnrolled(data.data);
         });
-    }, []);
+    }, [user, axiosSecure]);
     console.log(enrolled);
     return (
         <div>

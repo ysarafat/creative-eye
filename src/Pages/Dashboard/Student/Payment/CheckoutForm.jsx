@@ -85,7 +85,9 @@ function CheckoutForm({ price, selectedClasses, id }) {
                     axiosSecure.delete(`/delete-selected-class/${findClass?._id}`).then((res) => {
                         if (res.data.deletedCount > 0) {
                             axios
-                                .put(`http://localhost:5000/booked-seat/${findClass.classId}`)
+                                .put(
+                                    `https://creative-eye.onrender.com/booked-seat/${findClass.classId}`
+                                )
                                 .then((res) => {
                                     if (res.data.modifiedCount > 0) {
                                         Swal.fire(

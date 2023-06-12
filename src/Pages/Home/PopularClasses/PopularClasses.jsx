@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Container from '../../../Components/Container/Container';
+
 import SectionTitle from '../../Shared/SectionTitle/SectionTitle';
 import ClassCard from './ClassCard';
 
 function PopularClasses() {
     const [popularClasses, setPopularClasses] = useState([]);
+
     useEffect(() => {
-        fetch('http://localhost:5000/popular-class')
+        fetch('https://creative-eye.onrender.com/popular-class')
             .then((res) => res.json())
             .then((data) => setPopularClasses(data));
     }, []);

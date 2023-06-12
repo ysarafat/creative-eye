@@ -10,7 +10,6 @@ function Payment() {
     const [selectedClasses] = useEnrolled();
     const { id } = useParams();
     const finedClass = selectedClasses.find((cls) => cls._id === id);
-    console.log(id, finedClass);
     const classPrice = finedClass?.price;
 
     return (

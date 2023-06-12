@@ -2,40 +2,45 @@ import React from 'react';
 import Swal from 'sweetalert2';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import useRole from '../../../hooks/useRole';
 
 function ClassCard({ classes }) {
     const { _id, className, classImage, instructor, price, seats, bookedSeats, instructorEmail } =
         classes;
-
+    const [userRole] = useRole();
     const [axiosSecure] = useAxiosSecure();
     const { user } = useAuth();
     const handleEnroll = (id) => {
-        const enrollClass = {
-            student: user?.displayName,
-            email: user?.email,
-            classId: id,
-            class: className,
-            price,
-            instructor,
-            classImage,
-            instructorEmail,
-        };
+        if (userRole === 'admin' || userRole === 'instructor') {
+            Swal.fire('Sorry!!!', `Admin & instructor can not select classes`, 'error');
+        } else {
+            const enrollClass = {
+                student: user?.displayName,
+                email: user?.email,
+                classId: id,
+                class: className,
+                price,
+                instructor,
+                classImage,
+                instructorEmail,
+            };
 
-        axiosSecure.post('/select-class', enrollClass).then((data) => {
-            console.log(data.data.message);
-            if (data.data.message) {
-                Swal.fire('Sorry', `${data.data.message}`, 'warning');
-            }
-            if (data.data.insertedId) {
-                Swal.fire({
-                    position: 'top-center',
-                    icon: 'success',
-                    title: 'Add to select Success',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
-            }
-        });
+            axiosSecure.post('/select-class', enrollClass).then((data) => {
+                console.log(data.data.message);
+                if (data.data.message) {
+                    Swal.fire('Sorry', `${data.data.message}`, 'warning');
+                }
+                if (data.data.insertedId) {
+                    Swal.fire({
+                        position: 'top-center',
+                        icon: 'success',
+                        title: 'Add to select Success',
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            });
+        }
     };
     return (
         <div className="card card-compact w-full rounded-lg bg-white  dark:bg-slate-800 shadow-xl">

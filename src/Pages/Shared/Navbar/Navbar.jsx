@@ -69,7 +69,7 @@ function Navbar() {
                         className={({ isActive }) =>
                             isActive
                                 ? 'text-green'
-                                : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                                : ' hover:underline  hover:text-green duration-300 dark:text-white'
                         }
                     >
                         Dashboard
@@ -110,9 +110,7 @@ function Navbar() {
                     <NavLink
                         onClick={handleLogout}
                         className={({ isActive }) =>
-                            isActive
-                                ? 'text-green'
-                                : 'text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                            isActive ? 'text-dark-grey hover:text-green hover:underline' : ' '
                         }
                     >
                         Logout

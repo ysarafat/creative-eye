@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 
 function Theme() {
-    const [isDarkMode, setIsDarkMode] = useState(true);
+    const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');

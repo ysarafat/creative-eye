@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import Container from '../../Components/Container/Container';
 import { AuthContext } from '../../Context/AuthProvider';
 import image from '../../assets/register/Fingerprint.svg';
+import GoogleLogin from '../Shared/SocialLogin/GoogleLogin';
 
 function Register() {
     const { registerUser, updateUser } = useContext(AuthContext);
@@ -46,7 +47,7 @@ function Register() {
                             image: img,
                             role: 'student',
                         };
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://creative-eye.onrender.com/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json',
@@ -270,6 +271,8 @@ function Register() {
                                 Login
                             </Link>
                         </p>
+                        <div className="divider" />
+                        <GoogleLogin />
                     </div>
                 </div>
             </Container>

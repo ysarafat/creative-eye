@@ -23,7 +23,7 @@ function AllUsers() {
             confirmButtonText: 'Yes, Make an Admin',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/user/admin/${user._id}`, {
+                fetch(`https://creative-eye.onrender.com/user/admin/${user._id}`, {
                     method: 'PATCH',
                 })
                     .then((res) => res.json())
@@ -53,7 +53,7 @@ function AllUsers() {
             confirmButtonText: 'Yes, Make an instructor',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/user/instructor/${user._id}`, {
+                fetch(`https://creative-eye.onrender.com/user/instructor/${user._id}`, {
                     method: 'PATCH',
                 })
                     .then((res) => res.json())
@@ -83,7 +83,7 @@ function AllUsers() {
             confirmButtonText: 'Yes, Delete',
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/user/delete/${user._id}`, {
+                fetch(`https://creative-eye.onrender.com/user/delete/${user._id}`, {
                     method: 'DELETE',
                 })
                     .then((res) => res.json())

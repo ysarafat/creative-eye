@@ -7,7 +7,7 @@ import PageTitleBanner from '../Shared/PageTitleBanner.jsx/PageTitleBanner';
 function Instructors() {
     const [instructors, setInstructors] = useState([]);
     useEffect(() => {
-        axios.get('http://localhost:5000/instructors').then((res) => setInstructors(res.data));
+        axios.get('https://creative-eye.onrender.com/instructors').then((res) => setInstructors(res.data));
     }, []);
 
     return (

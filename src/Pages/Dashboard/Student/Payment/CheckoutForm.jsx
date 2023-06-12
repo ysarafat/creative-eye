@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAuth from '../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
-// import './checkoutForm.css';
 
 function CheckoutForm({ price, selectedClasses, id }) {
     const stripe = useStripe();

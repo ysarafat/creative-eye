@@ -5,10 +5,12 @@ import Swal from 'sweetalert2';
 import Container from '../../../Components/Container/Container';
 import Theme from '../../../Components/Theme/Theme';
 import { AuthContext } from '../../../Context/AuthProvider';
+import useRole from '../../../hooks/useRole';
 
 function Navbar() {
     const { user, logoutUser } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
+    const [userRole] = useRole();
     const navigate = useNavigate();
     const handleLogout = () => {
         logoutUser()
@@ -62,14 +64,42 @@ function Navbar() {
                     Classes
                 </NavLink>
             </li>
-            {user && (
+            {user && userRole === 'student' && (
                 <li>
                     <NavLink
-                        to="/dashboard"
+                        to="/dashboard/select-classes"
                         className={({ isActive }) =>
                             isActive
                                 ? 'text-green'
-                                : ' hover:underline  hover:text-green duration-300 dark:text-white'
+                                : ' text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                        }
+                    >
+                        Dashboard
+                    </NavLink>
+                </li>
+            )}
+            {user && userRole === 'instructor' && (
+                <li>
+                    <NavLink
+                        to="/dashboard/add-class"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-green'
+                                : ' text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
+                        }
+                    >
+                        Dashboard
+                    </NavLink>
+                </li>
+            )}
+            {user && userRole === 'admin' && (
+                <li>
+                    <NavLink
+                        to="/dashboard/manage-classes"
+                        className={({ isActive }) =>
+                            isActive
+                                ? 'text-green'
+                                : ' text-dark-grey hover:underline  hover:text-green duration-300 dark:text-white'
                         }
                     >
                         Dashboard
@@ -110,7 +140,9 @@ function Navbar() {
                     <NavLink
                         onClick={handleLogout}
                         className={({ isActive }) =>
-                            isActive ? 'text-dark-grey hover:text-green hover:underline' : ' '
+                            isActive
+                                ? 'text-dark-grey dark:text-white hover:text-green hover:underline'
+                                : ' '
                         }
                     >
                         Logout

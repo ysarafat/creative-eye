@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAuth from '../../../../hooks/useAuth';
@@ -9,6 +9,7 @@ import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 function AddClass() {
     const { user } = useAuth();
     const [axiosSecure] = useAxiosSecure();
+    const [loading, setLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -17,6 +18,7 @@ function AddClass() {
     } = useForm();
     const onSubmit = (data) => {
         const formData = new FormData();
+        setLoading(true);
         formData.append('file', data.classImage[0]);
         formData.append('upload_preset', 'creativeeye');
         formData.append('cloud_name', 'dcpdcdfxy');
@@ -40,6 +42,7 @@ function AddClass() {
                 axiosSecure.post('/add-class', newClass).then((data) => {
                     if (data.data.insertedId) {
                         reset();
+                        setLoading(false);
                         Swal.fire({
                             position: 'top-center',
                             icon: 'success',
@@ -69,7 +72,7 @@ function AddClass() {
                         </label>
                         <input
                             {...register('className', { required: true })}
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="text"
                             placeholder="Enter Class Name"
                         />
@@ -86,7 +89,7 @@ function AddClass() {
                         <input
                             {...register('classImage', { required: true })}
                             type="file"
-                            className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white  border-none"
+                            className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white bg-white text-dark-grey border-none"
                         />
                         <span>
                             {errors.classImage?.type === 'required' && (
@@ -102,7 +105,7 @@ function AddClass() {
                         </label>
                         <input
                             {...register('instructor', { required: true })}
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="text"
                             defaultValue={user?.displayName}
                             readOnly
@@ -114,7 +117,7 @@ function AddClass() {
                         </label>
                         <input
                             {...register('instructorEmail', { required: true })}
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="email"
                             defaultValue={user?.email}
                             readOnly
@@ -128,7 +131,7 @@ function AddClass() {
                         </label>
                         <input
                             {...register('availableSeats', { required: true })}
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="number"
                             placeholder="Enter Available seats"
                         />
@@ -144,7 +147,7 @@ function AddClass() {
                         </label>
                         <input
                             {...register('price', { required: true })}
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="number"
                             step="any"
                             placeholder="Enter Price"
@@ -159,7 +162,7 @@ function AddClass() {
                 <textarea
                     rows="10"
                     {...register('classDetails', { required: true })}
-                    className=" py-2 outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white focus:border-green"
+                    className=" py-2 outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white text-dark-grey focus:border-green"
                     placeholder="Class Details"
                 />
                 <span>
@@ -168,9 +171,10 @@ function AddClass() {
                     )}
                 </span>
                 <input
-                    className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"
+                    disabled={loading}
+                    className="w-full h-11 btn mt-5 bg-green disabled:text-dark-grey text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"
                     type="submit"
-                    value="Add Class"
+                    value={loading ? 'Please Wait' : 'Add Class'}
                 />
             </form>
         </div>

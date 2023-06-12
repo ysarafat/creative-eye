@@ -2,20 +2,34 @@ import React, { useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { IoMdCheckmark } from 'react-icons/io';
 import { VscFeedback } from 'react-icons/vsc';
+import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 import FeedbackModal from './FeedbackModal';
 
-function ManageClassesTable({ cls, idx }) {
+function ManageClassesTable({ cls, idx, refetch }) {
     const [axiosSecure] = useAxiosSecure();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleAprove = (id) => {
         const status = { status: 'approved' };
-        axiosSecure.put(`/update-status/${id}`, status).then((data) => console.log(data));
+        axiosSecure.put(`/update-status/${id}`, status).then((data) => {
+            if (data.data.modifiedCount > 0) {
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Approved',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        });
     };
     const handleDeny = (id) => {
         setIsModalOpen(true);
         const status = { status: 'deny' };
-        axiosSecure.put(`/update-status/${id}`, status).then((data) => console.log(data));
+        axiosSecure.put(`/update-status/${id}`, status).then((data) => {
+            refetch();
+        });
     };
     const closeModal = () => {
         setIsModalOpen(false);

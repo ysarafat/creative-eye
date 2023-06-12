@@ -1,12 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import {
-    AiOutlineBook,
-    AiOutlineDashboard,
-    AiOutlineHome,
-    AiOutlineLogout,
-    AiOutlineWallet,
-} from 'react-icons/ai';
+import { AiOutlineBook, AiOutlineHome, AiOutlineLogout, AiOutlineWallet } from 'react-icons/ai';
 import { BiBookAdd } from 'react-icons/bi';
 import { FaUsers } from 'react-icons/fa';
 import { HiBars3BottomLeft } from 'react-icons/hi2';
@@ -37,21 +31,21 @@ function Dashboard() {
     };
 
     return (
-        <div className="drawer lg:drawer-open">
-            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content relative top-[57px] lg:top-0  bg-white dark:bg-dark-blue p-8 ">
-                <Outlet />
-                <div className=" w-screen fixed top-0 right-0 left-0 py-3 px-4 lg:hidden dark:bg-[#0C1322] nb_border bg-[#EDF1F7]">
-                    <div className="flex items-center lg:justify-end justify-between">
-                        {' '}
-                        <label htmlFor="my-drawer-2" className=" drawer-button ">
-                            <div className="text-dark-grey dark:text-white">
-                                <HiBars3BottomLeft size={30} />
-                            </div>
-                        </label>
-                        <Theme />
-                    </div>
+        <div className="drawer lg:drawer-open max-w-[100%] lg:h-full">
+            <div className=" fixed top-0 right-0 left-0 py-3 px-4 lg:hidden dark:bg-[#0C1322] nb_border bg-[#EDF1F7]">
+                <div className="flex items-center lg:justify-end justify-between">
+                    {' '}
+                    <label htmlFor="my-drawer-2" className=" drawer-button ">
+                        <div className="text-dark-grey dark:text-white">
+                            <HiBars3BottomLeft size={30} />
+                        </div>
+                    </label>
+                    <Theme />
                 </div>
+            </div>
+            <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content relative top-[57px] lg:top-0  bg-white dark:bg-dark-blue p-8 overflow-x-hidden h-screen">
+                <Outlet />
             </div>
             <div className="drawer-side fixed">
                 <label htmlFor="my-drawer-2" className="drawer-overlay" />
@@ -80,7 +74,7 @@ function Dashboard() {
                     <div className="divider dark:divider-gray-300" />
                     {userRole === 'student' && (
                         <>
-                            <li className="text-lg">
+                            {/* <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -91,7 +85,7 @@ function Dashboard() {
                                 >
                                     <AiOutlineDashboard size={25} /> Dashboard
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
@@ -145,8 +139,8 @@ function Dashboard() {
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
-                                            ? 'hover:text-green'
-                                            : ' text-green duration-300 dark:text-white'
+                                            ? 'text-dark-grey dark:text-white hover:text-green '
+                                            : ' '
                                     }
                                     onClick={handleLogout}
                                 >
@@ -158,7 +152,7 @@ function Dashboard() {
                     {userRole === 'instructor' && (
                         <>
                             {' '}
-                            <li className="text-lg">
+                            {/* <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -169,7 +163,7 @@ function Dashboard() {
                                 >
                                     <AiOutlineDashboard size={25} /> Instructor Home
                                 </NavLink>{' '}
-                            </li>
+                            </li> */}
                             <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
@@ -211,8 +205,8 @@ function Dashboard() {
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
-                                            ? 'hover:text-green dark:text-white'
-                                            : ' text-green duration-300 dark:text-white'
+                                            ? 'text-dark-grey dark:text-white hover:text-green'
+                                            : ''
                                     }
                                     onClick={handleLogout}
                                 >
@@ -223,7 +217,7 @@ function Dashboard() {
                     )}
                     {userRole === 'admin' && (
                         <>
-                            <li className="text-lg">
+                            {/* <li className="text-lg">
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
@@ -234,7 +228,7 @@ function Dashboard() {
                                 >
                                     <AiOutlineDashboard size={25} /> Dashboard
                                 </NavLink>
-                            </li>
+                            </li> */}
                             <li className="text-lg">
                                 {' '}
                                 <NavLink
@@ -278,8 +272,8 @@ function Dashboard() {
                                 <NavLink
                                     className={({ isActive }) =>
                                         isActive
-                                            ? 'hover:text-green dark:text-white'
-                                            : ' text-green duration-300 dark:text-white'
+                                            ? 'text-dark-grey dark:text-white hover:text-green'
+                                            : ' '
                                     }
                                     onClick={handleLogout}
                                 >

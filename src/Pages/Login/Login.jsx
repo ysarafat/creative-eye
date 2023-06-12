@@ -18,6 +18,7 @@ function Login() {
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
     const emailRref = useRef();
+    const [loading, setLoading] = useState(false);
     const {
         register,
         handleSubmit,
@@ -25,7 +26,7 @@ function Login() {
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => {
-        console.log(data);
+        setLoading(true);
         const email = emailRref.current.value;
         loginUser(email, data.password)
             .then(() => {
@@ -38,8 +39,12 @@ function Login() {
                 });
                 navigate(from, { replace: true });
                 reset();
+                setLoading(false);
             })
-            .catch((err) => setError(err.message));
+            .catch((err) => {
+                setError(err.message);
+                setLoading(false);
+            });
     };
 
     const handelPassReset = () => {
@@ -83,7 +88,7 @@ function Login() {
                                 <input
                                     {...register('email')}
                                     ref={emailRref}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                                     type="email"
                                     placeholder="Enter Your Email"
                                     required
@@ -103,7 +108,7 @@ function Login() {
                                 </label>
                                 <input
                                     {...register('password', { required: true })}
-                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                                    className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                                     type={showPass ? 'text' : 'password'}
                                     placeholder="Enter Your Password"
                                 />
@@ -126,9 +131,10 @@ function Login() {
                                 </label>
                             </div>
                             <input
-                                className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"
+                                disabled={loading}
+                                className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 disabled:text-dark-grey dark:hover:text-black border-none"
                                 type="submit"
-                                value="Login"
+                                value={loading ? 'Please Wait' : 'Login'}
                             />
                         </form>
                         <button

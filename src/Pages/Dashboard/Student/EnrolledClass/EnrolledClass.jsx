@@ -25,7 +25,7 @@ function EnrolledClass() {
                     <table className="table">
                         {/* head */}
                         <thead>
-                            <tr className="dark:text-white">
+                            <tr className="dark:text-white text-dark-grey">
                                 <th>#</th>
                                 <th>Image</th>
                                 <th>Class Name</th>

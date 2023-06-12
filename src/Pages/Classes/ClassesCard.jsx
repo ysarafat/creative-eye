@@ -46,8 +46,8 @@ function ClassesCard({ classes }) {
             <figure>
                 <img className="h-[300px] w-full" src={classImage} alt="class" />
             </figure>
-            <div className=" py-4 px-4 rounded-b-lg  dark:text-gray-300">
-                <h2 className="card-title dark:text-white">{className} </h2>
+            <div className=" py-4 px-4 rounded-b-lg  dark:text-gray-300 text-grey-800">
+                <h2 className="card-title dark:text-white text-dark-grey">{className} </h2>
 
                 <p className="text-lg">Instructor : {instructor}</p>
                 <div className="flex items-center justify-between">

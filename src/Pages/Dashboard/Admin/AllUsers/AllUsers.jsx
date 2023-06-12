@@ -113,7 +113,7 @@ function AllUsers() {
             <div className="overflow-x-auto dark:bg-slate-800 bg-slate-100 p-5 rounded-lg dark:text-white text-dark-grey">
                 <table className="table">
                     <thead>
-                        <tr className="dark:text-white">
+                        <tr className="dark:text-white text-dark-grey">
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>

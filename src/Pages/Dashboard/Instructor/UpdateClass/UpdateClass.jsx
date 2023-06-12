@@ -3,13 +3,14 @@
 /* eslint-disable radix */
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 function UpdateClass() {
     const [axiosSecure] = useAxiosSecure();
+    const [loading, setLoading] = useState(false);
     const { id } = useParams();
 
     const { data: singleClass } = useQuery({
@@ -22,6 +23,7 @@ function UpdateClass() {
 
     const onSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         const form = event.target;
         const name = form.className.value;
         const image = form.image.files;
@@ -47,7 +49,10 @@ function UpdateClass() {
                         classDetails: details,
                     };
                     axiosSecure
-                        .put(`http://localhost:5000/update-class/${singleClass._id}`, updateData)
+                        .put(
+                            `https://creative-eye.onrender.com/update-class/${singleClass._id}`,
+                            updateData
+                        )
                         .then((res) => {
                             if (res.data.modifiedCount > 0) {
                                 Swal.fire({
@@ -57,6 +62,7 @@ function UpdateClass() {
                                     showConfirmButton: false,
                                     timer: 1500,
                                 });
+                                setLoading(false);
                             }
                         });
                 });
@@ -70,7 +76,10 @@ function UpdateClass() {
                 classDetails: details,
             };
             axiosSecure
-                .put(`http://localhost:5000/update-class/${singleClass._id}`, updateData)
+                .put(
+                    `https://creative-eye.onrender.com/update-class/${singleClass._id}`,
+                    updateData
+                )
                 .then((res) => {
                     if (res.data.modifiedCount > 0) {
                         Swal.fire({
@@ -103,7 +112,7 @@ function UpdateClass() {
                         </label>
                         <input
                             name="className"
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="text"
                             placeholder="Enter Class Name"
                             defaultValue={singleClass?.className}
@@ -117,7 +126,7 @@ function UpdateClass() {
                         <input
                             type="file"
                             name="image"
-                            className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white  border-none"
+                            className="file-input h-11 file-input-bordered shadow focus:shadow-lg w-full my-2 dark:bg-slate-900 dark:text-white bg-white text-dark-grey border-none"
                         />
                     </div>
                 </div>
@@ -129,7 +138,7 @@ function UpdateClass() {
                         </label>
                         <input
                             name="seats"
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="number"
                             placeholder="Enter Available seats"
                             defaultValue={singleClass?.seats}
@@ -142,7 +151,7 @@ function UpdateClass() {
                         </label>
                         <input
                             name="price"
-                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white focus:border-green"
+                            className=" outline-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3 h-11 w-full my-2 focus:border-s-8 bg-white text-dark-grey focus:border-green"
                             type="number"
                             step="any"
                             placeholder="Enter Price"
@@ -154,15 +163,16 @@ function UpdateClass() {
                 <textarea
                     rows="10"
                     name="classDetails"
-                    className=" py-2 outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white focus:border-green"
+                    className=" py-2 outline-none border-none shadow focus:shadow-lg dark:bg-slate-900 dark:text-white  rounded-lg px-3  w-full my-2 border bg-white text-dark-grey focus:border-green"
                     placeholder="Class Details"
                     defaultValue={singleClass?.classDetails}
                     required
                 />
                 <input
-                    className="w-full h-11 btn mt-5 bg-green capitalize text-lg text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"
+                    disabled={loading}
+                    className="w-full h-11 btn mt-5 bg-green capitalize text-lg text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black disabled:text-dark-grey border-none"
                     type="submit"
-                    value="update Class"
+                    value={loading ? 'Please Wait' : 'update Class'}
                 />
             </form>
         </div>

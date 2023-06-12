@@ -7,12 +7,17 @@ import PageTitleBanner from '../Shared/PageTitleBanner.jsx/PageTitleBanner';
 function Instructors() {
     const [instructors, setInstructors] = useState([]);
     useEffect(() => {
-        axios.get('https://creative-eye.onrender.com/instructors').then((res) => setInstructors(res.data));
+        axios
+            .get('https://creative-eye.onrender.com/instructors')
+            .then((res) => setInstructors(res.data));
     }, []);
 
     return (
         <div>
-            <PageTitleBanner title="our all legend instructor" subtitle="hello" />
+            <PageTitleBanner
+                title="our all legend instructor"
+                subtitle="Introducing Our Legendary Instructors: Experts Who Inspire and Empower"
+            />
             <Container>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-10 my-10">
                     {instructors?.map((instructor) => (
@@ -27,8 +32,8 @@ function Instructors() {
                                     alt="class"
                                 />
                             </figure>
-                            <div className=" py-4 px-4 rounded-b-lg  dark:text-gray-300">
-                                <h2 className="card-title flex justify-center dark:text-white text-center">
+                            <div className=" py-4 px-4 rounded-b-lg  dark:text-gray-300 text-gray-800">
+                                <h2 className="card-title flex justify-center dark:text-white text-center text-dark-grey">
                                     Name: {instructor.userName}
                                 </h2>
 

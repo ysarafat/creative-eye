@@ -15,7 +15,7 @@ function ManageClassesTable({ cls, idx, refetch }) {
             if (data.data.modifiedCount > 0) {
                 refetch();
                 Swal.fire({
-                    position: 'top-end',
+                    position: 'top-center',
                     icon: 'success',
                     title: 'Approved',
                     showConfirmButton: false,

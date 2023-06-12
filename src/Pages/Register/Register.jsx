@@ -38,6 +38,7 @@ function Register() {
             .then((image) => {
                 const img = image.data.url;
                 if (data.password !== data.confirmPassword) {
+                    setLoading(false);
                     return setError('Password Do not match');
                 }
                 // create user
@@ -58,17 +59,19 @@ function Register() {
                             body: JSON.stringify(userInfo),
                         })
                             .then((res) => res.json())
-                            .then((data) => console.log(data));
-                        Swal.fire({
-                            position: 'top-center',
-                            icon: 'success',
-                            title: 'Register Successful',
-                            showConfirmButton: false,
-                            timer: 1500,
-                        });
-                        reset();
-                        navigate(from, { replace: true });
-                        setLoading(false);
+                            .then((data) => {
+                                console.log(data);
+                                Swal.fire({
+                                    position: 'top-center',
+                                    icon: 'success',
+                                    title: 'Register Successful',
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                                reset();
+                                navigate(from, { replace: true });
+                                setLoading(false);
+                            });
                     })
                     .catch((err) => {
                         setError(err.message);
@@ -269,14 +272,14 @@ function Register() {
                             </div>
                             <input
                                 disabled={loading}
-                                className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black border-none"
+                                className="w-full h-11 btn mt-5 bg-green text-white hover:bg-dark-grey dark:hover:bg-slate-300 dark:hover:text-black dark:text-white dark:disabled:text-white border-none"
                                 type="submit"
                                 value={loading ? 'Please Wait' : 'Register'}
                             />
                         </form>
-                        <p className="mt-6">
+                        <p className="mt-6 dark:text-white">
                             Already have an account?
-                            <Link className="text-green underline " to="/login">
+                            <Link className="text-green underline ms-2" to="/login">
                                 Login
                             </Link>
                         </p>

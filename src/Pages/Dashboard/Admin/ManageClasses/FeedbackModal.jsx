@@ -1,5 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
+import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 function FeedbackModal({ isOpen, setIsOpen, closeModal, id }) {
@@ -12,8 +13,17 @@ function FeedbackModal({ isOpen, setIsOpen, closeModal, id }) {
     const sentFeedback = () => {
         setIsOpen(false);
         const feedback = { feedback: feedbackText };
-        console.log(feedback);
-        axiosSecure.put(`/sent-feedback/${id}`, feedback).then((data) => console.log(data));
+        axiosSecure.put(`/sent-feedback/${id}`, feedback).then((data) => {
+            if (data.data.modifiedCount > 0) {
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'feedback Sent',
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+            }
+        });
     };
 
     return (

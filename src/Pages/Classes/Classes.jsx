@@ -5,7 +5,7 @@ import PageTitleBanner from '../Shared/PageTitleBanner.jsx/PageTitleBanner';
 import ClassesCard from './ClassesCard';
 
 function Classes() {
-    const [classes] = useClasses();
+    const [classes, isLoading] = useClasses();
     const approveClass = classes.filter((cls) => cls.status === 'approved');
 
     return (
